@@ -3,6 +3,7 @@ import { Client } from "../../core/entities/Client/Client";
 import { ClientDns } from "../../core/entities/Client/ClientDns";
 import { ClientId } from "../../core/entities/Client/ClientId";
 import { ClientRepository, record } from "../../core/repository/Client.repository";
+import bcrypt  from "bcrypt"
 
 const dbOwner = "owner"
 const clientCollection = "clients"
@@ -20,7 +21,7 @@ export class MongoStorage implements ClientRepository {
                                     id:client.id.value,
                                     fullname:client.fullname.value,
                                     identification:client.identification.value,
-                                    password:client.password.value,
+                                    password:bcrypt.hashSync(client.password.value,10),
                                     enterprise:client.enterprise.value,
                                     email:client.email.value,
                                     dns:client.dns.value,
@@ -40,8 +41,6 @@ export class MongoStorage implements ClientRepository {
         }catch(error:any){
                  throw new Error(error.message)
         }
-        
-        
     }
     async removeClientById(clienId: ClientId): Promise<record> {
         try{

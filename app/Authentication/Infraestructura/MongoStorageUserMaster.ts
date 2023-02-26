@@ -8,7 +8,7 @@ import { recordUserMaster, UserMasterRepository } from "../core/repository/UserM
 import bcrypt from "bcrypt"
 const dbOwner = "owner"
 const masterCollection = "master"
-const userCollection = ""
+//const userCollection = ""
 
 export class MongoStorageUserMaster implements UserMasterRepository {
     async createUserMaster(userMaster: UserMaster): Promise<recordUserMaster> {
@@ -100,9 +100,6 @@ export class MongoStorageUserMaster implements UserMasterRepository {
             const conexion = await  mongoStorageManagement.createConexion()
             const db = conexion.db(dbOwner)
             const collection = db.collection(masterCollection)
-
-       console.log(" miid ",id)
-       console.log(" mi password ",password)
             
            await collection.findOneAndUpdate({id},{$set:{
                 password:bcrypt.hashSync(password,10)

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import uniqid from "uniqid"
 import interactor from "../core/interactor";
+import bcrypt from "bcrypt"
 
 export const registerUserOCController = async (req:Request,res:Response)=>{
        try{
@@ -9,7 +10,7 @@ export const registerUserOCController = async (req:Request,res:Response)=>{
                             id: uniqid(),
                             fullname:fullname,
                             identification:identification,
-                            password:"123456789",
+                            password: "123456789",
                             email:email,
                             active:true 
                         },value_backend_subdomain)

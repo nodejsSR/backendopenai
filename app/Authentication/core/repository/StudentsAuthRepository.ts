@@ -8,7 +8,7 @@ export interface recordUserMaster{
    dns:string,
 }
 
-export interface UserMasterRepository{
-     authenticarClient(clientAuth:UserOfClientAuth,dns:string):Promise<recordUserMaster>
-     changePassword(id:string,dns:string,password:ClientAuthPassword):Promise<recordUserMaster>
+export interface StudentsAuthRepository{
+     authenticarClient(clientAuth:UserOfClientAuth,dns:string):Promise<any>
+     changePassword(id:string,dns:string,password:ClientAuthPassword):Promise<any>
 }

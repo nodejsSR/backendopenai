@@ -4,13 +4,15 @@ import interactors from "../core/interactors";
 
 export const changePasswordClientAuthController = async (req:Request,res:Response)=>{
     try{
-        const { id,password ,value_backend_subdomain } = req.body
+        const { id,password ,dns } = req.body
 
         //console.log(email,password)
-
+         console.log(id,
+            dns,
+            password)
          const response = await interactors.authClientChangePasswordInteractor(
             id,
-            value_backend_subdomain,
+            dns,
             password
             )
          

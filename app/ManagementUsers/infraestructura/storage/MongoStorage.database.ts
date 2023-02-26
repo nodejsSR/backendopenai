@@ -2,7 +2,7 @@ import { mongoStorageManagement } from "../../../shared/Storage/mongoStorageMana
 import { UserOfClient } from "../../core/entities/UserOfClient/UserOfClient";
 import { UserOfClientId } from "../../core/entities/UserOfClient/UserOfClientId";
 import { UserOCRepository, record } from "../../core/repository/UserOC.repository";
-
+import bcrypt from "bcrypt"
 const dbOwner = "owner"
 const clientCollection = "clients"
 
@@ -28,7 +28,9 @@ export class MongoStorage implements UserOCRepository {
                                     fullname:client.fullname.value,
                                     identification:client.identification.value,
                                     email:client.email.value,
-                                    password:client.password.value,
+                                    password:bcrypt.hashSync(client.password.value,10),
+                                    created:new Date().toISOString(),
+                                    updated:new Date().toISOString(),
                                     active:client.active.value
                                 })
                 return {
@@ -58,7 +60,12 @@ export class MongoStorage implements UserOCRepository {
 
              const collection_clients = dbclient.collection(clientCollection)
 
-            const response =  await collection_clients.findOneAndUpdate({id:clienId.value},{$set:{active:false}})
+            const response =  await collection_clients.findOneAndUpdate({id:clienId.value},{
+                $set:{
+                    active:false,
+                    updated:new Date().toISOString()
+                }
+            })
             
                 return  { 
                     id:(response.value as any).id,
@@ -111,6 +118,7 @@ export class MongoStorage implements UserOCRepository {
                 fullname:client.fullname.value,
                 identification:client.identification.value,
                 email:client.email.value,
+                updated:new Date().toISOString()
                // active:client.active.value,
             }})
             

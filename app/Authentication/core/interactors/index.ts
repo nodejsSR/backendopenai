@@ -1,6 +1,8 @@
 import { MongoStorageClientAuth } from "../../Infraestructura/MongoStorageClientMaster";
+import { MongoStorageStudent } from "../../Infraestructura/MongoStorageStudents";
 import { MongoStorageUserMaster } from "../../Infraestructura/MongoStorageUserMaster";
 import { authClientAuthInteractor } from "./authClientAuth.interactor";
+import { authStudentsInteractor } from "./authStudents.interactor";
 import { authUserMasterInteractor } from "./authUserMasterInteractor";
 import { changePasswordMasterInteractor } from "./changePasswordMaster.interactor";
 import { changePasswordClientAuthInteractor } from "./changePaswordClientAuth.interactor";
@@ -10,6 +12,7 @@ import { veirfyIfExistsRegisterInteractor } from "./verifyIfExitsRegister.intera
 
 const repository = new MongoStorageUserMaster()
 const ClientAuthRepository = new MongoStorageClientAuth()
+const studentAuthRepository = new MongoStorageStudent()
 
 export default {
     authUserMasterInteractor :authUserMasterInteractor(repository),
@@ -18,5 +21,6 @@ export default {
     verifyIfExistsRegisterInteractor:veirfyIfExistsRegisterInteractor(repository),
     authClientAuthInteractor: authClientAuthInteractor(ClientAuthRepository),
     authClientChangePasswordInteractor: changePasswordClientAuthInteractor(ClientAuthRepository),
-    authMasterChangePasswordInteractor:changePasswordMasterInteractor(repository)
+    authMasterChangePasswordInteractor:changePasswordMasterInteractor(repository),
+    authStudentsInteractor:authStudentsInteractor(studentAuthRepository)
 }

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-type userType = "MASTER" | "CLIENT" | "USEROFCLIENT"
+type userType = "MASTER" | "CLIENT" | "STUDENT"
 export const createToken = (data:object,type:userType) => {
     const seed = process.env.TOKEN_SEED
     return jwt.sign({...data,type:type},seed as string)

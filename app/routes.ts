@@ -1,5 +1,6 @@
 import { Router } from "express"
 import { authClientController } from "./Authentication/controller/authClient.controller"
+import { authStudentController } from "./Authentication/controller/authStudent.controller"
 import { authUserMasterController } from "./Authentication/controller/authUserMasteController"
 import { changePasswordMasterAuthController } from "./Authentication/controller/changePasswordMasterController"
 import { changePasswordClientAuthController } from "./Authentication/controller/changePaswordClientAuthController"
@@ -39,7 +40,10 @@ router.post("/client/edit-user-of-client",getSubdomainMiddleware,searchAndUpdate
 router.post("/client/delete-user-by-id",getSubdomainMiddleware,removeUserOCByIdController)
 
 router.post("/clientauth/change-password",getSubdomainMiddleware,changePasswordClientAuthController) 
+router.post("/clientauth/change-password-by-client",changePasswordClientAuthController) 
 
+
+router.post("/studentauth/auth-user",getSubdomainMiddleware,authStudentController)
 /*
 router.post("/useroc/update-user",getSubdomainMiddleware,updateUserMasterController)
 router.post("/useroc/auth-user",getSubdomainMiddleware,authUserMasterController)
