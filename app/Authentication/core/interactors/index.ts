@@ -5,6 +5,7 @@ import { authClientAuthInteractor } from "./authClientAuth.interactor";
 import { authStudentsInteractor } from "./authStudents.interactor";
 import { authUserMasterInteractor } from "./authUserMasterInteractor";
 import { changePasswordMasterInteractor } from "./changePasswordMaster.interactor";
+import { changePasswordInteractor } from "./changePasswordStudent.interactor";
 import { changePasswordClientAuthInteractor } from "./changePaswordClientAuth.interactor";
 import { createUserMaster } from "./createUserMaster.interactor";
 import { updateUserMaster } from "./updateUserMaster.interactor";
@@ -22,5 +23,6 @@ export default {
     authClientAuthInteractor: authClientAuthInteractor(ClientAuthRepository),
     authClientChangePasswordInteractor: changePasswordClientAuthInteractor(ClientAuthRepository),
     authMasterChangePasswordInteractor:changePasswordMasterInteractor(repository),
-    authStudentsInteractor:authStudentsInteractor(studentAuthRepository)
+    authStudentsInteractor:authStudentsInteractor(studentAuthRepository),
+    changePasswordStudentInteractor:changePasswordInteractor(studentAuthRepository)
 }

@@ -10,5 +10,5 @@ export interface recordUserMaster{
 
 export interface StudentsAuthRepository{
      authenticarClient(clientAuth:UserOfClientAuth,dns:string):Promise<any>
-     changePassword(id:string,dns:string,password:ClientAuthPassword):Promise<any>
+     changePassword(id:string,dns:string,password:string):Promise<any>
 }

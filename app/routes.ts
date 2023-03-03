@@ -3,6 +3,7 @@ import { authClientController } from "./Authentication/controller/authClient.con
 import { authStudentController } from "./Authentication/controller/authStudent.controller"
 import { authUserMasterController } from "./Authentication/controller/authUserMasteController"
 import { changePasswordMasterAuthController } from "./Authentication/controller/changePasswordMasterController"
+import { changePasswordStudent } from "./Authentication/controller/changePasswordStudent.controller"
 import { changePasswordClientAuthController } from "./Authentication/controller/changePaswordClientAuthController"
 import { createUserMasterController } from "./Authentication/controller/createUserMasterController"
 import { updateUserMasterController } from "./Authentication/controller/updateUserMasterController"
@@ -44,6 +45,7 @@ router.post("/clientauth/change-password-by-client",changePasswordClientAuthCont
 
 
 router.post("/studentauth/auth-user",getSubdomainMiddleware,authStudentController)
+router.post("/studentauth/change-password",getSubdomainMiddleware,changePasswordStudent)
 /*
 router.post("/useroc/update-user",getSubdomainMiddleware,updateUserMasterController)
 router.post("/useroc/auth-user",getSubdomainMiddleware,authUserMasterController)
