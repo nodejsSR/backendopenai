@@ -20,14 +20,9 @@ export class MongoStorageClientAuth implements ClientAuthRepository {
                   
             if(entity == null) return null
 
-            console.log("pase por aqui", clientAuth.password.value , (entity as any).password)
-
             const result= bcrypt.compareSync(clientAuth.password.value,(entity as any).password)
 
-            console.log("result ",result)
             if(!result) return null
-
-            console.log("pase por qui dos")
 
             return entity as any as  recordUserMaster
 

@@ -13,6 +13,7 @@ export class MongoStorage implements ClientRepository {
     async registerCliente(client: Client): Promise<record> {
 
         try{
+            console.log("password ",client.password.value)
             
             const conexion = await  mongoStorageManagement.createConexion()
             const db = conexion.db(dbOwner)

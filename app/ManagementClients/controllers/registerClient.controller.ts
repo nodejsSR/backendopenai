@@ -10,7 +10,7 @@ export const registerClientController = async (req:Request,res:Response)=>{
                             id: uniqid(),
                             fullname:fullname,
                             identification:identification,
-                            password:bcrypt.hashSync("123456789",10) ,
+                            password:"123456789" ,
                             enterprise:enterprise ,
                             email:email ,
                             dns:dns ,
