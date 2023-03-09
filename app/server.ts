@@ -1,4 +1,5 @@
-import * as dotenv from 'dotenv' 
+import * as dotenv from 'dotenv'
+import http from "http"
 dotenv.config()
 import express from "express"
 import cors  from "cors"
@@ -9,10 +10,10 @@ app.use(express.json())
 app.use(cors())
 
 app.use(router)
-app.listen(4000,()=>{
-console.log("corriendo en puerto 4000")
-})
 
+http.createServer(app).listen(4000,"0.0.0.0",()=>{
+    console.log("corriendo en puerto 4000")
+})
 
 
 
