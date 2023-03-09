@@ -32,10 +32,10 @@ export const getSubdomainMiddleware = (  req:Request,
     if(arrayOrigin.length==2)return res.status(500).json({message:"not found"})
     if(arrayOrigin.length>3) return res.status(500).json({message:"not found"})
     const dividir = arrayOrigin[0]
-    const subdomain = dividir?.split("http://")[1]
+    const subdomain = dividir?.split("https://")[1]
     req.body.value_backend_subdomain=subdomain
     next()
   }catch(error:any){
-    return res.status(500).json()
+    return res.status(500).json({message:error.message})
   }
 }
