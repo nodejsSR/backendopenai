@@ -1,4 +1,4 @@
-import { Router } from "express"
+import { Request, Response, Router } from "express"
 import { authClientController } from "./Authentication/controller/authClient.controller"
 import { authStudentController } from "./Authentication/controller/authStudent.controller"
 import { authUserMasterController } from "./Authentication/controller/authUserMasteController"
@@ -20,6 +20,15 @@ import { searchAndUpdateUserOfClientByIdController } from "./ManagementUsers/con
 import { getSubdomainMiddleware } from "./middleware"
 
 const router = Router()
+router.all("/test",(req:Request,res:Response)=>{
+
+  return  res.status(200).json(
+        {
+            hola:"hola"
+        }
+    )
+
+})
 router.post("/register-client",getSubdomainMiddleware,registerClientController)
 router.post("/remove-client-by-id",getSubdomainMiddleware,removeClientByIdController)
 router.post("/search-all-client",getSubdomainMiddleware,searchAllClientsController)
