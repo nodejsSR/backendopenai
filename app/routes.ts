@@ -20,7 +20,7 @@ import { searchAndUpdateUserOfClientByIdController } from "./ManagementUsers/con
 import { getSubdomainMiddleware } from "./middleware"
 
 const router = Router()
-router.all("/test",(req:Request,res:Response)=>{
+router.all("/v1/test",(req:Request,res:Response)=>{
 
   return  res.status(200).json(
         {
@@ -29,38 +29,38 @@ router.all("/test",(req:Request,res:Response)=>{
     )
 
 })
-router.post("/register-client",getSubdomainMiddleware,registerClientController)
-router.post("/remove-client-by-id",getSubdomainMiddleware,removeClientByIdController)
-router.post("/search-all-client",getSubdomainMiddleware,searchAllClientsController)
-router.post("/search-and-update-by-id",getSubdomainMiddleware,searchAndUpdateClientByIdController)
-router.post("/search-client-by-domain",getSubdomainMiddleware,searchClientByDomainController)
+router.post("/v1/register-client",getSubdomainMiddleware,registerClientController)
+router.post("/v1/remove-client-by-id",getSubdomainMiddleware,removeClientByIdController)
+router.post("/v1/search-all-client",getSubdomainMiddleware,searchAllClientsController)
+router.post("/v1/search-and-update-by-id",getSubdomainMiddleware,searchAndUpdateClientByIdController)
+router.post("/v1/search-client-by-domain",getSubdomainMiddleware,searchClientByDomainController)
 
-router.post("/master/create-user",getSubdomainMiddleware,createUserMasterController)
-router.post("/master/update-user",getSubdomainMiddleware,updateUserMasterController)
-router.post("/master/verify-user",getSubdomainMiddleware,verifyUserMasterController)
-router.post("/master/auth-user",getSubdomainMiddleware,authUserMasterController)
-router.post("/master/change-password",getSubdomainMiddleware,changePasswordMasterAuthController)
-
-
-router.post("/client/update-user",getSubdomainMiddleware,updateUserMasterController)
-router.post("/client/auth-user",getSubdomainMiddleware,authClientController)
-router.post("/client/search-all-user-of-client",getSubdomainMiddleware,searchAllUserOCtsController)
-router.post("/client/register-user-of-client",getSubdomainMiddleware,registerUserOCController)
-router.post("/client/edit-user-of-client",getSubdomainMiddleware,searchAndUpdateUserOfClientByIdController)
-router.post("/client/delete-user-by-id",getSubdomainMiddleware,removeUserOCByIdController)
-
-router.post("/clientauth/change-password",getSubdomainMiddleware,changePasswordClientAuthController) 
-router.post("/clientauth/change-password-by-client",changePasswordClientAuthController) 
+router.post("/v1/master/create-user",getSubdomainMiddleware,createUserMasterController)
+router.post("/v1/master/update-user",getSubdomainMiddleware,updateUserMasterController)
+router.post("/v1/master/verify-user",getSubdomainMiddleware,verifyUserMasterController)
+router.post("/v1/master/auth-user",getSubdomainMiddleware,authUserMasterController)
+router.post("/v1/master/change-password",getSubdomainMiddleware,changePasswordMasterAuthController)
 
 
-router.post("/studentauth/auth-user",getSubdomainMiddleware,authStudentController)
-router.post("/studentauth/change-password",getSubdomainMiddleware,changePasswordStudent)
+router.post("/v1/client/update-user",getSubdomainMiddleware,updateUserMasterController)
+router.post("/v1/client/auth-user",getSubdomainMiddleware,authClientController)
+router.post("/v1/client/search-all-user-of-client",getSubdomainMiddleware,searchAllUserOCtsController)
+router.post("/v1/client/register-user-of-client",getSubdomainMiddleware,registerUserOCController)
+router.post("/v1/client/edit-user-of-client",getSubdomainMiddleware,searchAndUpdateUserOfClientByIdController)
+router.post("/v1/client/delete-user-by-id",getSubdomainMiddleware,removeUserOCByIdController)
+
+router.post("/v1/clientauth/change-password",getSubdomainMiddleware,changePasswordClientAuthController) 
+router.post("/v1/clientauth/change-password-by-client",changePasswordClientAuthController) 
+
+
+router.post("/v1/studentauth/auth-user",getSubdomainMiddleware,authStudentController)
+router.post("/v1/studentauth/change-password",getSubdomainMiddleware,changePasswordStudent)
 /*
 router.post("/useroc/update-user",getSubdomainMiddleware,updateUserMasterController)
 router.post("/useroc/auth-user",getSubdomainMiddleware,authUserMasterController)
 */
 
 
-router.use("/v1",router)
+router.use("/ms-multitenant",router)
 
 export default router
