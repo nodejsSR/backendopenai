@@ -18,6 +18,7 @@ import { removeUserOCByIdController } from "./ManagementUsers/controllers/remove
 import { searchAllUserOCtsController } from "./ManagementUsers/controllers/searchAllUserOfClient.controller"
 import { searchAndUpdateUserOfClientByIdController } from "./ManagementUsers/controllers/searchAndUpdateById.controller"
 import { getSubdomainMiddleware } from "./middleware"
+import { authStudentMobileController } from "./Authentication/controller/authStudentMobile.controller"
 
 const router = Router()
 router.all("/v1/test",(req:Request,res:Response)=>{
@@ -54,6 +55,7 @@ router.post("/v1/clientauth/change-password-by-client",changePasswordClientAuthC
 
 
 router.post("/v1/studentauth/auth-user",getSubdomainMiddleware,authStudentController)
+router.post("/v1/studentauth-mobile/auth-user",getSubdomainMiddleware,authStudentMobileController)
 router.post("/v1/studentauth/change-password",getSubdomainMiddleware,changePasswordStudent)
 /*
 router.post("/useroc/update-user",getSubdomainMiddleware,updateUserMasterController)
