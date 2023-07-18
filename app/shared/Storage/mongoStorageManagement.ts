@@ -1,4 +1,4 @@
-import { MongoClient }  from "mongodb"
+import { MongoClient ,ServerApiVersion }  from "mongodb"
 
 export class mongoStorageManagement {
 
@@ -6,7 +6,13 @@ export class mongoStorageManagement {
     private static url = process.env.MONGO_URL as string
     static async createConexion(): Promise<MongoClient>{
         if(this.conexion === null){
-            const client = new MongoClient(this.url);
+            const client = new MongoClient(this.url,{
+                serverApi: {
+                    version: ServerApiVersion.v1,
+                    strict: true,
+                    deprecationErrors: true,
+                  }
+            });
           await  client.connect()
           this.conexion=client
           return this.conexion
