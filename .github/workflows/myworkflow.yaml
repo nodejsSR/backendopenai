@@ -1,0 +1,24 @@
+name: Publish to Private Docker Hub
+
+on:
+  push:
+    branches:
+      - '*'  # Modifica esto para que coincida con el nombre de tu rama principal
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} 
+      # Reemplaza 'your-docker-hub-url' con la URL de tu Docker Hub privado, por ejemplo, 'https://your-docker-hub.com'
+
+    - name: Build Docker image
+      run: docker build -t ddtarazona/ms-twiliophone:dev-latest .
+
+    - name: Push Docker image
+      run: docker push ddtarazona/ms-twiliophone:dev-latest 
