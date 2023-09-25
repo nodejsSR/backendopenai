@@ -17,8 +17,12 @@ jobs:
       run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }} 
       # Reemplaza 'your-docker-hub-url' con la URL de tu Docker Hub privado, por ejemplo, 'https://your-docker-hub.com'
 
+    - name: Obtener la rama actual
+      id: obtener-rama
+      run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
+
     - name: Build Docker image
-      run: docker build -t ddtarazona/ms-twiliophone:dev-latest .
+      run: docker build -t ddtarazona/ms-multitenant:${{ steps.obtener-rama.outputs.branch }}-latest .
 
     - name: Push Docker image
-      run: docker push ddtarazona/ms-twiliophone:dev-latest 
+      run: docker push ddtarazona/ms-multitenant:${{ steps.obtener-rama.outputs.branch }}-latest 
